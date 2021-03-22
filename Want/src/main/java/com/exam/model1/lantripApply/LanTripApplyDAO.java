@@ -1,17 +1,10 @@
 package com.exam.model1.lantripApply;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.exam.model1.lantrip.LanTripListTO;
-import com.exam.model1.lantrip.LanTripTO;
 
 @Repository
 public class LanTripApplyDAO {
@@ -76,24 +69,24 @@ public class LanTripApplyDAO {
 	   
 	// view
 	public LanTripApplyTO lanTrip_apply_View(LanTripApplyTO to) {
-		//sqlSession.update("lanTrip_apply_view_hit", to);
+		sqlSession.update("lanTrip_apply_view_hit", to);
 		to = sqlSession.selectOne("lanTrip_apply_view", to);
 
 		return to;
 	}
 
 	// delete
-	public LanTripTO boardDelete(LanTripTO to) {
-		LanTripTO board = sqlSession.selectOne("delete", to);
+	public LanTripApplyTO boardDelete(LanTripApplyTO to) {
+		LanTripApplyTO board = sqlSession.selectOne("delete", to);
 
 		return board;
 	}
 
 	// delete_ok
-	public int boardDeleteOk(LanTripTO to) {
+	public int lanTrip_apply_delete_ok(LanTripApplyTO to) {
 		int flag = 2;
 
-		int result = sqlSession.delete("delete_ok", to);
+		int result = sqlSession.delete("lanTrip_apply_delete_ok", to);
 		if (result == 1) {
 			flag = 0;
 		} else if (result == 0) {
@@ -104,16 +97,16 @@ public class LanTripApplyDAO {
 	}
 
 	// modify
-	public LanTripTO boardModify(LanTripTO to) {
-		LanTripTO board = sqlSession.selectOne("modify", to);
+	public LanTripApplyTO lanTrip_apply_modify(LanTripApplyTO to) {
+		to = sqlSession.selectOne("lanTrip_apply_modify", to);
 
-		return board;
+		return to;
 	}
 
 	// modify_ok
-	public int boardModifyOk(LanTripTO to) {
+	public int lanTrip_apply_modify_ok(LanTripApplyTO to) {
 		int flag = 2;
-		int result = sqlSession.update("modify_ok", to);
+		int result = sqlSession.update("lanTrip_apply_modify_ok", to);
 		if (result == 1) {
 			flag = 0;
 		} else if (result == 0) {

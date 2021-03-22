@@ -97,7 +97,7 @@
 	<!-- LanTripApplyList -->
 	<select id="LanTripApplyList"
 		resultType="com.exam.model1.lantripApply.LanTripApplyTO"> <!-- 파라메터가 없으므로 parameter Type 필요 없음 -->
-		select no, subject, writer, date_format(wdate, '%Y-%m-%d') wdate, hit, reply
+		select no, location, subject, writer, date_format(wdate, '%Y-%m-%d') wdate, hit, reply
 		from la_board
 	</select>
 
@@ -108,13 +108,38 @@
 	</insert>
 
 	<!-- LanTripApplyView -->
-	<select id="lanTrip_apply_view" parameterType="com.exam.model1.lantripApply.LanTripApplyTO" resultType="com.exam.model1.lantripApply.LanTripApplyTO">
+	<select id="lanTrip_apply_view" parameterType="com.exam.model1.lantripApply.LanTripApplyTO" 
+	resultType="com.exam.model1.lantripApply.LanTripApplyTO">
+		select no, subject, content, writer, date_format(wdate, '%Y-%m-%d') wdate, hit, location, picture, reply
+		from la_board
+		where no = #{no}
+	</select>
+	<!-- 랜선여행신청하기 조회수 -->
+	<update id="lanTrip_apply_view_hit" parameterType="com.exam.model1.lantripApply.LanTripApplyTO">
+		update la_board
+		set hit=hit+1
+		where no = #{no}
+	</update>
+	<!-- LanTripApplyDeleteOk -->
+	<delete id="lanTrip_apply_delete_ok" parameterType="com.exam.model1.lantripApply.LanTripApplyTO">
+		delete from la_board
+		where no = #{no}
+	</delete>
+	
+	<!-- LanTripApplyModify -->
+	<select id="lanTrip_apply_modify" parameterType="com.exam.model1.lantripApply.LanTripApplyTO" 
+	resultType="com.exam.model1.lantripApply.LanTripApplyTO">
 		select no, subject, content, writer, date_format(wdate, '%Y-%m-%d') wdate, hit, location, picture, reply
 		from la_board
 		where no = #{no}
 	</select>
 	
-
+	<!-- LanTripApplyModifyOk -->
+	<update id="lanTrip_apply_modify_ok" parameterType="com.exam.model1.lantripApply.LanTripApplyTO">
+		update la_board
+		set subject = #{subject}, content = #{content}, location = #{location}, picture = #{picture}
+		where no = #{no}
+	</update>
 
 	<!--  =================  사진자랑하기   =================  -->
 	<!-- 사진자랑 글쓰기  -->

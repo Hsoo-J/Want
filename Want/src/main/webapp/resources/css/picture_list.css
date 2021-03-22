@@ -172,3 +172,18 @@ body{
 .portfolio-details .portfolio-description p {
   padding: 0;
 }
+
+.btn--blue-2 {
+	background: #5fcf80;
+	color: white;
+}
+
+.btn--blue-2:hover {
+	background: #008040;
+	color: #ffffff;
+}
+
+#btn_write{
+	text-align:right;
+	color:white;
+}

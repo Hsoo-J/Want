@@ -127,6 +127,11 @@ body{
 	border-color: grey;
 	width:100%;
 }
+
+#modal-content{
+	height:5px;
+	background-color:white;
+}
 /* ==========================================================================
    #BOX-SIZING
    ========================================================================== */
@@ -445,23 +450,34 @@ h6 {
 	background: #eb3746;
 }
 
-#btn_write {
+.btn--silver{
+	background: silver;
+}
+
+.btn--silver:hover{
+	background: #808080;
+}
+
+#btn_comment {
 	text-align:right;
 	width:86%;
 }
 
 #btn_list {
 	text-align:center;
-	background-color:#e6e6e6;
+	background-color:silver;
 	width:80px;
 	border-radius:.25rem;
 }
 
 #btn_buttons{
 	text-align:right;
-	width:80px;
-}
 
+} 
+
+#btn_write{
+	text-align: right;
+}
 
 /* ==========================================================================
    #DATE PICKER

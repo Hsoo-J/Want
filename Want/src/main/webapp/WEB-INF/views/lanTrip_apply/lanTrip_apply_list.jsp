@@ -29,11 +29,14 @@
 		String writer = to.getWriter();
 		String wdate = to.getWdate();
 		String hit = to.getHit();
+		String location = to.getLocation();
 			
 
 		sbHtml.append("<tr>");
 		sbHtml.append("   <td>&nbsp;</td>");
 		sbHtml.append("   <td id='no'>" + no + "</td>");
+		sbHtml.append("	 <th>&nbsp;</th>");
+		sbHtml.append("   <td id='loc'>" + location + "</td>");
 		sbHtml.append("	 <th>&nbsp;</th>");
 		sbHtml.append("   <td>");
 		sbHtml.append("      <a href='./lanTrip_apply_view.do?cpage="+cpage+"&no=" + no + "'>" + subject + "</a>&nbsp;");
@@ -85,6 +88,8 @@
 						<th width="3%">&nbsp;</th>
 						<th width="5%" id="no">번호</th>
 						<th width="3%">&nbsp;</th>
+						<th width="5%" id="loc">지역</th>
+						<th width="3%">&nbsp;</th>
 						<th id="subject">제목</th>
 						<th width="10%" id="writer">글쓴이</th>
 						<th width="17%" id="wdate">등록일</th>
@@ -99,8 +104,14 @@
 				</table>
 			</div>
 			<div class="card-footer">
-				<button class="btn btn--radius-2 btn--blue-2 btn-sm" type="button"
-					onclick="location.href='./lanTrip_apply_write.do'">등록하기</button>
+			<c:choose>      
+				<c:when test="${empty sessionScope.id && empty sessionScope.kakaoid}">
+					<button type="button" class="btn btn--radius-2 btn--blue-2 btn-md" onclick="javascript:alert('로그인을 하셔야합니다.')">신청하기</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button" class="btn btn--radius-2 btn--blue-2 btn-md" onclick="location.href='./lanTrip_apply_write.do?cpage=<%=cpage%>'">신청하기</button>	
+				</c:otherwise>
+			</c:choose>   
 			</div>
 
 <%

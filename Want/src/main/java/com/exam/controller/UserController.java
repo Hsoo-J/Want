@@ -28,7 +28,7 @@ public class UserController {
 	
 
    // 각자 맞는 upload 폴더 경로로 변경
-   private String uploadPath = "C:\\KICKIC\\git repo\\Want\\Want\\src\\main\\webapp\\upload";
+   private String uploadPath = "C:\\Git_Local\\Want\\src\\main\\webapp\\upload";
 
 	// ---------------------- 로그인 관련 ----------------------
 	@RequestMapping(value = "/loginForm.do")

@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%
+	String cpage = request.getParameter("cpage");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,8 +217,14 @@
 					</form>
 				</div>
 				<div class="card-footer">
-					<button class="btn btn--radius-2 btn--blue-2" type="submit"
-						id="submit1" >등록하기</button>
+					<c:choose>      
+						<c:when test="${empty sessionScope.id && empty sessionScope.kakaoid}">
+							<button type="submit" id="submit1" class="btn btn--radius-2 btn--blue-2" onclick="javascript:alert('로그인을 하셔야합니다.')">등록하기</button>
+						</c:when>
+					<c:otherwise>
+						<button type="submit" id="submit1" class="btn btn--radius-2 btn--blue-2" onclick="location.href='./lanTrip_apply_write.do?cpage=<%=cpage%>'">등록하기</button>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>

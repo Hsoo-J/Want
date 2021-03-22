@@ -27,7 +27,7 @@ public class LanTripController {
    private LanTripDAO dao;
 
    // 각자 맞는 upload 폴더 경로로 변경
-   private String uploadPath = "C:\\KICKIC\\git repo\\Want\\Want\\src\\main\\webapp\\upload\\lanTrip";
+   private String uploadPath = "C:\\Git_Local\\Want\\src\\main\\webapp\\upload\\lanTrip";
    
 
    // 랜선여행 목록

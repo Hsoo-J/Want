@@ -25,3 +25,20 @@ body {
    padding: 30px;
 }
 
+#btn_write{
+	text-align:right;
+}
+
+.btn--blue-2 {
+	background: #5fcf80;
+	color:white;
+}
+
+.btn--blue-2:hover {
+	background: #008040;
+	color: #ffffff;
+}
+
+#td_loc{
+	color:green;
+}

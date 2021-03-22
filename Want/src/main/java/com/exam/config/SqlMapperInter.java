@@ -33,6 +33,9 @@ public interface SqlMapperInter {
 	public abstract ArrayList<LanTripApplyTO> LanTripApplyList();
 	public abstract int lanTrip_apply_write_ok(LanTripApplyTO to);
 	public abstract void LanTrip_apply_View(LanTripApplyTO to);
+	public abstract int lanTrip_apply_delete_ok(LanTripApplyTO to);
+	public abstract void lanTrip_apply_modify(LanTripApplyTO to);
+	public abstract int lanTrip_apply_modify_ok(LanTripApplyTO to);
 	
 	public abstract ArrayList<LanTripTO> lanTripList();
 	

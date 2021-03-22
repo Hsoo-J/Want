@@ -37,7 +37,7 @@
 		sbHtml.append( "	</td>" );
 		sbHtml.append( "</tr>" );
 		sbHtml.append( "</table>" ); 
-	}*/
+	} */
 %>
 
 <!DOCTYPE html>
@@ -71,21 +71,21 @@
 			<thead>
 				<tr>
 					<td id="location" class="text-left d-none d-md-table-cell"><b>[<%=location %>]</b></td>
+				</tr>
 					<tr>
 					<td id="no" class="text-center d-none d-sm-table-cell"><%=no %></td>
 					<td id="subject" class="text-center"><b><%=subject %></b></td>
 					<td id="writer" class="text-center d-none d-md-table-cell"><%=writer %></td>
 					<td id="wdate" class="text-center d-none d-md-table-cell"><%=wdate %></td>
 					<td id="hit" class="text-center d-none d-md-table-cell"><%=hit %></td>
-					</tr>
 				</tr>
-
 			</thead>
 		</table>
 	</section>
 	<section id="content" class="container" >
 		<div class="form-group" style=" margin-top:20px;">
-			<textarea id="board_content" name="board_content" class="form-control" rows="5" style="resize: none" disabled="disabled"><%=content %></textarea>
+			<div id="board_content" name="board_content" class="form-control" 
+			rows="5" style="resize: none" disabled="disabled"><%=content %></div>
 		</div>
 	</section>
 	<section id="section-picture" class="container">
@@ -107,8 +107,8 @@
 	                    <tr>
 	                        <td>
 	                            <textarea style="width: 1100px" rows="3" cols="50" id="comment" name="comment" placeholder="&nbsp;댓글을 입력하세요"></textarea>
-	                            <div id="btn_write">
-	                                <a href='#' onClick="fn_comment('${result.code }')" class="btn pull-right btn-success">등록</a>
+	                            <div id="btn_comment">
+	                                <a href='#' onClick="fn_comment('${result.code }')" class="btn btn--radius-2 btn--blue-2 btn-md">댓글등록</a>
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -116,16 +116,61 @@
 	            </div>
 	        </div>
 	    </form>
-	    <div>
-			<div id="btn_list">
-				<input type="button" value="목록" class="btn" onclick="location.href='lanTrip_apply_list.do'"/>
-			</div>
-			<div>
-				<input id="btn_modify" type="button" value="수정" class="btn btn-default" style="cursor: pointer;" onclick="location.href='lanTrip_apply_modify.do?no=<%=request.getParameter("no") %>'" />
-				<input id="btn_delete" type="button" value="삭제" class="btn" style="cursor: pointer;" onclick="location.href='lanTrip_apply_delete.do?no=<%=request.getParameter("no") %>'" />
-				<input id="btn_write" type="button" value="신청하기" class="btn" style="cursor: pointer;" onclick="location.href='lanTrip_apply_write.do'" />
-			</div>
+	    <div id="btn_buttons">
+			<span>
+				<button class="btn btn--radius-2 btn-sm btn--silver"  type="button"
+				onclick="location.href='./lanTrip_apply_list.do'"> 목록 </button>
+				<!-- 로그인이 되어있고 작성자가 같을 때만 수정과 삭제버튼이 보이게 한다. -->
+				<c:if test="${to.writer eq sessionScope.id }">
+					<button class="btn btn--radius-2 btn--silver btn-sm" type="button" data-bs-toggle="modal" data-bs-target=".bs-modify-modal-sm">수정</button>
+					<button class="btn btn--radius-2 btn--silver btn-sm" type="button" data-bs-toggle="modal" data-bs-target=".bs-delete-modal-sm">삭제</button>
+				</c:if>
+			<span>
+				<c:choose>      
+					<c:when test="${empty sessionScope.id && empty sessionScope.kakaoid}">
+						<button type="button" class="btn btn--radius-2 btn--blue-2 btn-md" onclick="javascript:alert('로그인을 하셔야합니다.')">신청하기</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn--radius-2 btn--blue-2 btn-md" onclick="location.href='./lanTrip_apply_write.do?cpage=<%=cpage%>'">신청하기</button>	
+					</c:otherwise>
+				</c:choose>
+				</span>
+			</span>
 		</div>
+		
+		<div class="modal fade bs-delete-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  			<div class="modal-dialog modal-sm">
+  		
+  		
+    			<div class="modal-content" >
+    				<br />
+      				<div style="height:60px;">&nbsp;&nbsp;정말 삭제하시겠습니까?</div>
+      		
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn--silver" data-bs-dismiss="modal" >취소</button>
+        				<button type="button" class="btn btn--blue-2" onclick="location.href='./lanTrip_apply_delete_ok.do?no=<%=request.getParameter("no")%>'">삭제</button>
+      				</div>
+    			</div>
+    		
+  			</div>
+		</div>
+		
+		<div class="modal fade bs-modify-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  			<div class="modal-dialog modal-sm">
+  		
+  		
+    			<div class="modal-content">
+      			<br />
+      			<div style="height:60px;">&nbsp;&nbsp;정말 수정하시겠습니까?</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn--silver" data-bs-dismiss="modal" >취소</button>
+        				<button type="button" class="btn btn--blue-2" onclick="location.href='./lanTrip_apply_modify.do?no=<%=request.getParameter("no")%>'">수정</button>
+      				</div>
+    			</div>
+    		
+  			</div>
+		</div>
+		
 	</section>
 	
 </body>

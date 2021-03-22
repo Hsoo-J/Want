@@ -208,8 +208,16 @@
 
       </div>
     </section>
-
-	<button class="btn btn-primary btn-md" onclick="location.href='./picture_write.do'" >등록하기</button>
-
+	<div id="btn_write">
+	<c:choose>      
+			<c:when test="${empty sessionScope.id && empty sessionScope.kakaoid}">
+				<button type="button" class="btn btn--radius-2 btn--blue-2 btn-md" onclick="javascript:alert('로그인을 하셔야합니다.')">등록하기</button>
+			</c:when>
+			<c:otherwise> 
+				<button type="button" class="btn btn--radius-2 btn--blue-2 btn-md" onclick="location.href='./picture_write.do'">등록하기</button>	
+			</c:otherwise>
+	</c:choose>
+	</div>
+	<br />
 </body>
 </html>

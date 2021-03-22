@@ -61,8 +61,8 @@
 			<thead>
 				<tr>
 					<td class="text-center d-none d-md-table-cell"><%=no %></td>
-					<td class="text-center d-none d-md-table-cell"><%=location %></td>
-					<td class="text-center"><%=subject %></td>
+					<td id="td_loc" class="text-center d-none d-md-table-cell">[<%=location %>]</td>
+					<td class="text-center"><b><%=subject %></b></td>
 					<td class="text-center d-none d-md-table-cell"><%=writer %></td>
 					<td class="text-center d-none d-md-table-cell"><%=wdate %></td>
 					<td class="text-center d-none d-md-table-cell"><%=hit %></td>
@@ -77,7 +77,7 @@
 	</section>
 	<section id="content" class="container">
 		<div class="form-group" style="border: 1px; color: solid; margin-top:20px;">
-			<textarea id="board_content" name="board_content" class="form-control" rows="10" style="resize: none" disabled="disabled"><c:out value="${requestScope.to.content}" escapeXml="false" /></textarea>
+			<div id="board_content" name="board_content" class="form-control" rows="10" style="resize: none" disabled="disabled"><c:out value="${requestScope.to.content}" escapeXml="false" /></div>
 		</div>
 	</section>
 	<section id="comment" class="container" style="margin-top:10px;">

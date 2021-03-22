@@ -17,7 +17,7 @@ table{
 }
 @charset "UTF-8";
 
-#no, #writer, #wdate, #hit {
+#no, #writer, #wdate, #hit, #loc{
 	text-align:center;
 }
 /* ==========================================================================
